@@ -1,0 +1,11 @@
+{
+    "BASE_URL": "",
+    "ApiUrl": {
+    },
+    "SecretKey": {
+    },
+    "LocalVariable": {
+        "authName": "_auth",
+        "cookieSecure": false
+    }
+}

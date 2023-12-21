@@ -1,0 +1,39 @@
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+*{
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #333;
+}
+
+.form_Element{
+    padding: 1%;
+    border-radius: 1%;
+    
+    box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.108);
+    border-radius: 10px;
+    padding: 2%;
+}
+
+option{
+    border: .1px rgba(0, 0, 0, 0.036) solid;
+    padding: 1%;
+}
+
+select{
+    border: 2px rgba(0, 0, 0, 0.295) solid;
+    border-radius: 5px;
+}
+
+.table{
+    
+    box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.108);
+    border-radius: 10px;
+    padding: 2%;
+}
+

@@ -1,0 +1,22 @@
+
+
+.form{
+    
+    margin-top: 5%;
+    padding: 5%;
+    background-color: rgba(255, 255, 255, 0.075);
+    border-radius: 5%;
+    box-shadow: 1px 2px 20px #33333319;
+}
+
+@media only screen and (min-width:1000px) { 
+    .form { display: inline-block; vertical-align: middle; } 
+} 
+
+@media only screen and (max-width:1000px) { 
+    .form { display: block; }
+}
+
+.form-title{
+    font-size: 150%;
+}
