@@ -1,11 +1,15 @@
 {
-    "BASE_URL": "",
+    "BASE_URL": "https://testgeodanapi.azurewebsites.net",
     "ApiUrl": {
+        "LogIn" : "api/Users/LogIn",
+        "Sector": "api/Sector",
+        "Person": "api/Person"
     },
     "SecretKey": {
     },
     "LocalVariable": {
         "authName": "_auth",
         "cookieSecure": false
-    }
+    },
+    "googleClientID": "433921653616-ih8t75bi5n8kskmteu2qd20ohs7rguts.apps.googleusercontent.com"
 }

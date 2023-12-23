@@ -8,12 +8,16 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Logout, Power } from '@mui/icons-material';
 import { Container } from '@mui/material';
-import { useSignOut } from 'react-auth-kit';
+import { useAuthUser, useSignOut } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
+import User from '../Models/User';
+import { Avatar } from 'antd';
 
 export default function AppBar() {
     const signOut = useSignOut()
     const navigate = useNavigate()
+    const auth = useAuthUser()
+    const user: User = JSON.parse(JSON.stringify(auth()))
 
      function logout() {
         signOut()
@@ -21,17 +25,17 @@ export default function AppBar() {
     }
 
     return (
-        <Container maxWidth={"lg"} sx={{ flexGrow: 1 }}>
+        <Container maxWidth={"xl"} sx={{ flexGrow: 1 }}>
             <ApplicationBar
                 position="static"
                 variant='outlined'
                 color='inherit'
             >
                 <Toolbar>
-
                     <Typography variant='h4' fontWeight={"bold"}>TEST Géodan Nzissié</Typography>
                     <hr />
                     <Button onClick={logout} variant='contained' disableElevation startIcon={<Logout />} color="error">Logout</Button>
+                    {user.picture?<Avatar style={{marginLeft:"10px"}} size={"large"} src={user.picture} /> : ""}
                 </Toolbar>
             </ApplicationBar>
         </Container>
