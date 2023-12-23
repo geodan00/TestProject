@@ -1,1 +1,11 @@
 /// <reference types="react-scripts" />
+
+declare namespace NodeJS {
+    interface ProcessEnv {
+       //types of envs
+        NODE_ENV: 'development' | 'production' | 'test';
+        PUBLIC_URL: string;
+        BASE_URL: string;
+        GOOGLE_CLIENT_ID: string;
+    }
+}

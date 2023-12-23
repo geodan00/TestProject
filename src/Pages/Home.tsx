@@ -15,6 +15,7 @@ import Sector from '../Models/Sector';
 import Datas from "../Datas/var.json"
 import Swal from 'sweetalert2';
 import SectorToSaveDto from '../Models/SectorToSaveDto';
+import env from "react-dotenv";
 
 
 const { SHOW_ALL } = TreeSelect;
@@ -53,7 +54,7 @@ function Home() {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: Datas.BASE_URL + Datas.ApiUrl.Sector,
+            url: env.BASE_URL + Datas.ApiUrl.Sector,
             headers: {
                 'Accept': 'text/plain'
             }
@@ -71,7 +72,7 @@ function Home() {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: Datas.BASE_URL + Datas.ApiUrl.Person,
+            url: env.BASE_URL + Datas.ApiUrl.Person,
             headers: {
                 'Accept': 'text/plain'
             }
@@ -118,7 +119,7 @@ function Home() {
           let config = {
             method: 'post',
             maxBodyLength: Infinity,
-            url: Datas.BASE_URL + Datas.ApiUrl.Person,
+            url: env.BASE_URL + Datas.ApiUrl.Person,
             headers: { 
               'Content-Type': 'application/json', 
               'Accept': 'text/plain'
@@ -170,7 +171,7 @@ function Home() {
           let config = {
             method: 'put',
             maxBodyLength: Infinity,
-            url: Datas.BASE_URL+Datas.ApiUrl.Person,
+            url: env.BASE_URL+Datas.ApiUrl.Person,
             headers: { 
               'Content-Type': 'application/json', 
               'Accept': 'text/plain'

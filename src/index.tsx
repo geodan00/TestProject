@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Load from './Components/Load';
 import { AuthProvider } from 'react-auth-kit';
 import Data from "./Datas/var.json";
+import  "react-dotenv";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

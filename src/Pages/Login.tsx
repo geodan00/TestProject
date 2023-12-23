@@ -11,6 +11,7 @@ import axios from "axios";
 import Sw from "sweetalert2";
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import DecodeToken from '../Services/DecodeToken';
+import env from "react-dotenv";
 
 function Login() {
     const { register, handleSubmit } = useForm();
@@ -27,12 +28,12 @@ function Login() {
         user.name = data.name
         user.picture = data.picture
 
-        user.password = data.password=="OAuth"? "OAuth": user.password
+        user.password = data.password == "OAuth" ? "OAuth" : user.password
 
         let config = {
             method: 'post',
             maxBodyLength: Infinity,
-            url: Datas.BASE_URL + Datas.ApiUrl.LogIn,
+            url: env.BASE_URL + Datas.ApiUrl.LogIn,
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'text/plain'
@@ -130,30 +131,29 @@ function Login() {
                 </Button><br /><br />
                 or
                 <br />
-                
+
                 <Button>
-                <GoogleOAuthProvider clientId={Datas.googleClientID} >
+                    <GoogleOAuthProvider clientId={env.GOOGLE_CLIENT_ID as string} >
 
-                    <GoogleLogin
-                        onSuccess={credentialResponse => {
-                            let response : any = DecodeToken(credentialResponse.credential as string)
-                            
-                            let user : User = new User(response.email, "")
-                            user.name = response.name
-                            user.email = response.email
-                            user.picture = response.picture
-                            
-                            onSubmit(user)
+                        <GoogleLogin
+                            onSuccess={credentialResponse => {
+                                let response: any = DecodeToken(credentialResponse.credential as string)
 
-                        }}
-                        onError={() => {
-                            Sw.fire({
-                                icon:"warning",
-                                text: "Login Failed"
-                            })
-                        }}
-                    />
-                </GoogleOAuthProvider>
+                                let user: User = new User(response.email, "")
+                                user.name = response.name
+                                user.email = response.email
+                                user.picture = response.picture
+
+                                onSubmit(user)
+                            }}
+                            onError={() => {
+                                Sw.fire({
+                                    icon: "warning",
+                                    text: "Login Failed"
+                                })
+                            }}
+                        />
+                    </GoogleOAuthProvider>
                 </Button>
             </form>
         </FormProvider>
