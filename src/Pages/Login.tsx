@@ -29,7 +29,7 @@ function Login() {
         user.picture = data.picture
 
         user.password = data.password == "OAuth" ? "OAuth" : user.password
-
+        //alert(JSON.stringify(user))
         let config = {
             method: 'post',
             maxBodyLength: Infinity,
@@ -59,7 +59,7 @@ function Login() {
                     } else {
                         Sw.fire({
                             title: "User not found.",
-                            text: "Make that that all your credential is correct!",
+                            text: "Make sure that that all your credential is correct!",
                             icon: 'warning'
 
                         })
@@ -72,7 +72,7 @@ function Login() {
 
                     Sw.fire({
                         title: "User not found",
-                        text: "Make that all your credential is correct!",
+                        text: "Make sure that all your credential is correct!",
                         icon: 'warning'
 
                     })
@@ -91,7 +91,7 @@ function Login() {
 
         <FormProvider {...methods}>
             <form className='form' onSubmit={handleSubmit(onSubmit)}>
-                <p className='form-title'>Please enter your login details!</p>
+                <p className='form-title'>Please enter your login details !!!</p>
                 <p style={{ fontWeight: "lighter", textAlign: "left" }}>Make sure to enter all filed.</p><br />
                 <TextField
                     {...register("userName")}
@@ -139,7 +139,8 @@ function Login() {
                             onSuccess={credentialResponse => {
                                 let response: any = DecodeToken(credentialResponse.credential as string)
 
-                                let user: User = new User(response.email, "OAuth")
+                                let user: User = new User(response.email, "")
+                                user.password = "OAuth"
                                 user.name = response.name
                                 user.email = response.email
                                 user.picture = response.picture
