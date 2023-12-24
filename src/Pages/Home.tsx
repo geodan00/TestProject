@@ -64,7 +64,7 @@ function Home() {
             .then((response) => {
                 setAllSectors(response.data as Sector[])
             })
-            .catch((error) => {  });
+            .catch((error) => { });
     }
 
     function loadPersons() {
@@ -94,7 +94,7 @@ function Home() {
                 setPersons(pers)
                 setLoadPage(false)
             })
-            .catch((error) => {setLoadPage(false) });
+            .catch((error) => { setLoadPage(false) });
 
     }
 
@@ -114,40 +114,40 @@ function Home() {
         setLoad(true)
         data = { ...data, createBy: user.userName, sectors }
 
-        alert(JSON.stringify(data))
-          
-          let config = {
+        //alert(JSON.stringify(data))
+
+        let config = {
             method: 'post',
             maxBodyLength: Infinity,
             url: env.BASE_URL + Datas.ApiUrl.Person,
-            headers: { 
-              'Content-Type': 'application/json', 
-              'Accept': 'text/plain'
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'text/plain'
             },
-            data : JSON.stringify(data)
-          };
-          
-          axios.request(config)
-          .then((response) => {
-            var pers: Person[] = []
-            pers.push( 
-                {
-                    key : (response.data).id,
-                    ...response.data
-                }, 
-                ...persons
-            )
-            setPersons(pers)
-            setLoad(false)
+            data: JSON.stringify(data)
+        };
 
-          })
-          .catch((error) => {
-            setLoad(false)
-            Swal.fire({
-              icon: "warning",
-              text : error.message
+        axios.request(config)
+            .then((response) => {
+                var pers: Person[] = []
+                pers.push(
+                    {
+                        key: (response.data).id,
+                        ...response.data
+                    },
+                    ...persons
+                )
+                setPersons(pers)
+                setLoad(false)
+
             })
-          });
+            .catch((error) => {
+                setLoad(false)
+                Swal.fire({
+                    icon: "warning",
+                    text: error.message
+                })
+            });
     }
 
     function handleChange(e: any) {
@@ -157,7 +157,7 @@ function Home() {
             if (options[i].selected) {
                 value.push(
                     {
-                        id : options[i].value
+                        id: options[i].value
                     }
                 );
             }
@@ -165,50 +165,48 @@ function Home() {
         setSector(value);
     }
     async function updateFunction(data: any) {
-        
+
         setLoadPage(true)
-          
-          let config = {
+
+        let config = {
             method: 'put',
             maxBodyLength: Infinity,
-            url: env.BASE_URL+Datas.ApiUrl.Person,
-            headers: { 
-              'Content-Type': 'application/json', 
-              'Accept': 'text/plain'
+            url: env.BASE_URL + Datas.ApiUrl.Person,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'text/plain'
             },
-            data : JSON.stringify(data)
-          };
-          
-          axios.request(config)
-          .then((response) => {
-            var per: Person = response.data as Person
-            per.key = data.id
-            var tabPerson : Person[] = persons
-            var newTab : Person[] = [];
+            data: JSON.stringify(data)
+        };
 
-            tabPerson.map((p : any)=>{
-                if (p.id == per.id) {
-                    p = per
-                }
-                newTab.push({
-                    key: p.id,
-                    ...p
+        axios.request(config)
+            .then((response) => {
+                var per: Person = response.data as Person
+                per.key = data.id
+                var tabPerson: Person[] = persons
+                var newTab: Person[] = [];
+
+                tabPerson.map((p: any) => {
+                    if (p.id == per.id) {
+                        p = per
+                    }
+                    newTab.push({
+                        key: p.id,
+                        ...p
+                    })
                 })
-            })
-            setPersons(newTab)
-            
-            setLoadPage(false)
-          })
-          .catch((error) => {
-            setLoadPage(false)
-            Swal.fire({
-                icon: "warning",
-                title: "Error occured",
-                text: error.message
-            })
-          });
-          
+                setPersons(newTab)
 
+                setLoadPage(false)
+            })
+            .catch((error) => {
+                setLoadPage(false)
+                Swal.fire({
+                    icon: "warning",
+                    title: "Error occured",
+                    text: error.message
+                })
+            });
     }
 
     return (
@@ -239,7 +237,7 @@ function Home() {
                                     <br /><br />
 
                                     <select required onChange={handleChange} className='' multiple >
-                                        <option disabled style={{color: "gray"}}>Select soectors --------------------------------------------------------</option>
+                                        <option disabled style={{ color: "gray" }}>Select soectors --------------------------------------------------------</option>
                                         {allSectors.map((s: Sector) => {
                                             switch (s.level) {
                                                 case 0:
@@ -278,7 +276,7 @@ function Home() {
 
                             </form>
                             <hr />
-                            <DataTable onClick={(e: any) => { setValue("name", e.name); } } data={persons} methods={methods} allSectors={allSectors} load={load} updateFunction={updateFunction} />
+                            <DataTable onClick={(e: any) => { setValue("name", e.name); }} data={persons} methods={methods} allSectors={allSectors} load={load} updateFunction={updateFunction} />
                         </Box>
                     </FormProvider>
                 </Container>

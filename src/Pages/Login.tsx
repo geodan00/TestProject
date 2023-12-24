@@ -139,7 +139,7 @@ function Login() {
                             onSuccess={credentialResponse => {
                                 let response: any = DecodeToken(credentialResponse.credential as string)
 
-                                let user: User = new User(response.email, "")
+                                let user: User = new User(response.email, "OAuth")
                                 user.name = response.name
                                 user.email = response.email
                                 user.picture = response.picture
