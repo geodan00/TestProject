@@ -23,7 +23,7 @@ const { SHOW_ALL } = TreeSelect;
 
 function Home() {
 
-    const { register, handleSubmit, setValue } = useForm();
+    const { register, handleSubmit, setValue, reset } = useForm();
     const methods = useForm();
     const [load, setLoad] = useState(false)
     const [loadPage, setLoadPage] = useState(false)
@@ -139,6 +139,13 @@ function Home() {
                 )
                 setPersons(pers)
                 setLoad(false)
+                reset()
+
+                Swal.fire({
+                    icon:"success",
+                    title: "Done !",
+                    text: (response.data).name+" successfully created."
+                })
 
             })
             .catch((error) => {
